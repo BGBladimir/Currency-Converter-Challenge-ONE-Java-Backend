@@ -1,15 +1,16 @@
 import java.text.DecimalFormat;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class CurrencyConverter {
 
-    public static void EnterParityAndAmount(String baseCurrencyCode, String destinationCurrencyCode, double amount){
+    public static void EnterParityAndAmount(String baseCurrencyCode, String destinationCurrencyCode,Locale locale, double amount){
         Scanner captureData = new Scanner(System.in);
         System.out.println("Introduzca la cantidad a convertir, por favor: ");
         amount = captureData.nextDouble();
         captureData.nextLine();
 
-        ApiManagement.ExecuteManagement(baseCurrencyCode, destinationCurrencyCode, amount);
+        ApiManagement.ExecuteManagement(baseCurrencyCode, destinationCurrencyCode,locale, amount);
     }
 
     public static void Converter(){
@@ -20,8 +21,8 @@ public class CurrencyConverter {
         while (!currencyToConvert.equalsIgnoreCase("8")){
             System.out.println("******************************************************************************");
             System.out.println("--- BIENVENIDO(A) AL CONVERSOR DE MONEDAS ---");
-            System.out.println("Trabajamos con 7 tipos de monedas, las cuales listamos a continuación");
-            System.out.println("en sus diferentes paridades.");
+            System.out.println("Trabajamos con 7 tipos de intercambios con 5 tipos de monedas,");
+            System.out.println("las cuales listamos a continuación en sus diferentes paridades.");
             System.out.println("******************************************************************************");
             System.out.println(" ");
 
@@ -43,33 +44,37 @@ public class CurrencyConverter {
             switch (currencyToConvert){
                 case "1":
                     System.out.println("Has elegido convertir de Dolar americano a Peso dominicano");
-                    EnterParityAndAmount("USD", "DOP", amount);
+                    Locale dominicanRepublic = new Locale("es", "DO");
+                    EnterParityAndAmount("USD", "DOP",dominicanRepublic, amount);
                     break;
 
                 case "2":
                     System.out.println("Has elegido convertir de Peso dominicano a Dólar americano");
-                    EnterParityAndAmount("DOP", "USD", amount);
+                    EnterParityAndAmount("DOP", "USD",Locale.US, amount);
                     break;
 
                 case "3":
                     System.out.println("Has elegido convertir Dólar americano a Peso argentino.");
-                    EnterParityAndAmount("USD", "ARS", amount);
+                    Locale argentina = new Locale("es", "AR");
+                    EnterParityAndAmount("USD", "ARS",argentina, amount);
                     break;
                 case "4":
                     System.out.println("Has elegido convertir Dólar americano a Real brasileño.");
-                    EnterParityAndAmount("USD", "BRL", amount);
+                    Locale brasil = new Locale("pt", "BR");
+                    EnterParityAndAmount("USD", "BRL",brasil, amount);
                     break;
                 case "5":
                     System.out.println("Has elegido convertir Real brasileño a Dólar americano.");
-                    EnterParityAndAmount("BRL", "USD", amount);
+                    EnterParityAndAmount("BRL", "USD",Locale.US, amount);
                     break;
                 case "6":
                     System.out.println("Has elegido convertir Dólar americano a Peso colombiano.");
-                    EnterParityAndAmount("USD", "COP", amount);
+                    Locale colombia = new Locale("es", "CO");
+                    EnterParityAndAmount("USD", "COP",colombia, amount);
                     break;
                 case "7":
                     System.out.println("Has elegido convertir Peso colombiano a Dólar americano.");
-                    EnterParityAndAmount("COP", "USD", amount);
+                    EnterParityAndAmount("COP", "USD",Locale.US, amount);
                     break;
 
                 case "8":

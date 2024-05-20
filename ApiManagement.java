@@ -10,7 +10,7 @@ import java.time.Duration;
 import java.util.Locale;
 
 public class ApiManagement {
-    public static void ExecuteManagement(String baseCurrencyCode, String destinationCurrencyCode, double amount) {
+    public static void ExecuteManagement(String baseCurrencyCode, String destinationCurrencyCode,Locale locale, double amount) {
         String apiKey = "67c5df84039dd462f697616a";  // Sustituye con tu clave de API real
         URI address = URI.create("https://v6.exchangerate-api.com/v6/" + apiKey + "/pair/" + baseCurrencyCode + "/" + destinationCurrencyCode + "/" + amount);
 
@@ -21,13 +21,14 @@ public class ApiManagement {
                 .build();
 
         try {
+            //Enviar la solicitud y obtener la respuesta
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
             if (response.statusCode() == 200) {
                 // Analizar la respuesta JSON
                 ExchangeCurrency.ExchangeRateResponse exchangeRateResponse = new Gson().fromJson(response.body(), ExchangeCurrency.ExchangeRateResponse.class);
                 if ("success".equals(exchangeRateResponse.result)) {
                     // Formatear los valores monetarios
-                    NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(Locale.US);
+                    NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(locale);
 
                     String formattedConversionResult = currencyFormatter.format(exchangeRateResponse.conversion_result);
 
