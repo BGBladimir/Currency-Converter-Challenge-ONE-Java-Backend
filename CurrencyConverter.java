@@ -33,9 +33,9 @@ public class CurrencyConverter {
         conversions.put("7", new ConversionInfo("COP", "USD", USA));
     }
 
-    public static void main(String[] args) {
+   /* public static void main(String[] args) {
         Converter();
-    }
+    }*/
 
     public static void EnterParityAndAmount(String baseCurrencyCode, String destinationCurrencyCode, Locale locale, double amount) {
         Scanner captureData = new Scanner(System.in);
@@ -55,7 +55,7 @@ public class CurrencyConverter {
         String currencyToConvert = "";
 
         while (!currencyToConvert.equals("8")) {
-            displayMenu();
+            DisplayMenu();
 
             currencyToConvert = captureData.nextLine();
             System.out.println("******************************************************************************");
@@ -82,10 +82,10 @@ public class CurrencyConverter {
         captureData.close();
     }
 
-    private static void displayMenu() {
+    private static void DisplayMenu() {
         System.out.println("******************************************************************************");
         System.out.println("--- BIENVENIDO(A) AL CONVERSOR DE MONEDAS ---");
-        System.out.println("Trabajamos con 7 tipos de intercambios con 5 tipos de monedas,");
+        System.out.println("Trabajamos con 7 tipos de intercambios con 4 tipos de monedas,");
         System.out.println("las cuales listamos a continuación en sus diferentes paridades.");
         System.out.println("******************************************************************************");
         System.out.println(" ");
